@@ -1,0 +1,9 @@
+10 REM Fibonacciho posloupnost
+
+20 ARRAY ARR
+30 LET ARR[0] = 0
+40 LET ARR[1] = 1
+50 FOR I=2 TO 50
+60 LET ARR[I] = ARR[I - 1] + ARR[I - 2]
+70 NEXT I
+80 PRINT ARR

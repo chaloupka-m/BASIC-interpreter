@@ -1,0 +1,17 @@
+10 REM Faktoriál
+
+20 PRINT "Pro výpočet faktoriálu zadejte číslo, pro ukončení programu zadejte 'exit'"
+30 INPUT "Zadejte číslo: "; N
+40 IF N = "exit" THEN END
+50 LET NUMBER = N
+60 LET FAKTORIAL = 1
+70 GOSUB 1000
+80 PRINT NUMBER; "! = "; FAKTORIAL
+90 GOTO 30
+
+1000 IF N < 0 THEN 1010 ELSEIF N = 0 THEN RETURN ELSE 1030
+1010 PRINT "Chybný argument"
+1020 GOTO 30
+1030 LET FAKTORIAL = FAKTORIAL * N
+1040 LET N = N - 1
+1050 GOTO 1000
