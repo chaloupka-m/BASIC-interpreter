@@ -36,7 +36,7 @@ Vypíše hodnotu výrazu na konzoli.
 ```
 10 PRINT 1 + 2 * 3
 ```
-Na místo parametru lze zadat i více výrazů:
+Na místo parametru lze zadat i více výrazů oddělených středníkem:
 ```
 10 PRINT "1 + 2 = "; 1 + 2
 ```
@@ -45,8 +45,8 @@ Vypíše hodnotu výrazu na konzoli a vyžádá si uživatelský vstup, který u
 ```
 10 INPUT "Zadejte své jméno: "; NAME
 ```
-#### REM _Komentář_
-Je používán pro snazší orientaci v kódu, interpret komentář ignoruje.
+#### REM _Comment_
+Komentář je používán pro snazší orientaci v kódu, interpret komentář ignoruje.
 ```
 10 REM Toto je komentář
 ```
