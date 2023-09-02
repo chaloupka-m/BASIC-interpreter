@@ -1,7 +1,7 @@
 # Interpret vlastní verze programovacího jazyka BASIC
 BASIC (Beginner's All-purpose Symbolic Instruction Code) je interpretovaný programovací jazyk s imperativním paradigmatem. Díky své jednoduché syntaxi byl v minulosti používaný pro výuku programování a tvorbu jednoduchých aplikací.
 ## Spuštění interpretu
-Ke spuštění interpretu je nutné mít na počítači nainstalovaný Python
+Ke spuštění interpretu je nutné mít na počítači nainstalovaný Python.
 Pokud chcete spustit soubor s kódem BASIC, zadejte:
 ```
 python basic.py "adresa_souboru"
@@ -24,9 +24,9 @@ K ovládání textového rozhraní slouží příkazy:
 ## Syntaxe jazyka BASIC
 - BASIC není senzitivní na velikost písmen.
 - Není třeba deklarovat proměnné.
-- Neinicializované proměnné jsou rovny 0
-- Názvy proměnných mohou obsahovat písmena bez diakritiky, číslice a symbol '_', mohou mít libovolnou délku, nesmí ovšem začínat číslicí
-- Datovými typy jsou zde Integer, Float, String a Array
+- Neinicializované proměnné jsou rovny 0.
+- Názvy proměnných mohou obsahovat písmena bez diakritiky, číslice a symbol '_', mohou mít libovolnou délku, nesmí ovšem začínat číslicí.
+- Datovými typy jsou zde Integer, Float, String a Array.
 - Před každým příkazem je nutné napsat číslo řádku, které musí být nezáporné celé číslo.
 - Pokud zvolíte číslo řádku, které již existuje, původní příkaz bude nahrazen novým.
 - Při interpretaci kódu se příkazy provádí v pořadí čísel řádků.
