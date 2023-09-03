@@ -6,7 +6,7 @@
 from error import Error
 from expressions import *
 from statements import *
-from math import pi, e
+from math import pi, e as euler
 
 class Parser:
 	def __init__(self, lexerDict):
@@ -243,7 +243,7 @@ class Parser:
 				return Token("Float", pi)
 			if self.currentToken().value == "E":
 				self.posY += 1
-				return Token("Float", e)
+				return Token("Float", euler)
 		
 		if self.currentToken().tokenType == "FunctionName":
 			token = self.currentToken()
@@ -292,7 +292,7 @@ class Parser:
 					return NegativeExpression(self.lineNumber(), Token("Float", pi))
 				if self.currentToken().value == "E":
 					self.posY += 1
-					return NegativeExpression(self.lineNumber(), Token("Float", e))
+					return NegativeExpression(self.lineNumber(), Token("Float", euler))
 			
 			if self.currentToken().tokenType == "FunctionName":
 				token = self.currentToken()
