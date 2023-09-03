@@ -7,15 +7,16 @@ from time import sleep
 import math
 from error import Error
 
-variables = {}
-forLoops = {}
-subroutines = []
+variables = {} #Ukládání proměnných
+forLoops = {} #Informace o proměnných použitých pro cyklus FOR
+subroutines = [] #Aktuálně probíhající subrutiny
 
 class Evaluator:
 	def __init__(self, statements):
 		self.statements = statements
 		self.pos = 0
 
+	#Vyhledá řádku při použití GOTO nebo GOSUB
 	def searchLine(self, line, stats, index = 0):
 		if len(stats) == 0:
 			e = Error(f"There is no line with number {line}", self.lineNumber())
@@ -192,6 +193,7 @@ class Evaluator:
 def isNum(num):
 	return num in "0123456789"
 
+#Převede uživatelský vstup INPUT na Integer nebo Float, pokud se jedná o číslo
 def number(string):
 	if string == "":
 		return string

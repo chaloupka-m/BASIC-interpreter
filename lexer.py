@@ -15,7 +15,7 @@ logicalOperators = ["AND", "OR"]
 functionNames = ["RAND", "ABS", "SGN", "ROUND", "FLOOR", "SIN", "COS", "TAN", "ASIN", "ACOS", "ATAN", "SQR", "EXP", "LOG", "LEN", "UPPERCASE", "LOWERCASE", "LEFT", "RIGHT", "MID"]
 
 #Ostatní klíčová slova
-otherKeywords = ["THEN", "ELSEIF", "ELSE", "TO", "STEP", "PI"]
+otherKeywords = ["THEN", "ELSEIF", "ELSE", "TO", "STEP", "PI", "E"]
 
 def isChar(char):
 	return char.lower() in "abcdefghijklmnopqrstuvwxyz_"
@@ -33,6 +33,7 @@ class Token:
 	def log(self):
 		return f"{self.tokenType}({self.value})"
 	
+	#Vrátí Integer pokud je value celé číslo (ale uložené v paměti jako Float)
 	def val(self, value):
 		if not isinstance(value, float):
 			if isinstance(value, bool):
@@ -60,17 +61,20 @@ class Lexer:
 	def currentChar(self):
 		return self.text[self.pos]
 	
+	#Vrátí číslo řádku - nutné před každým příkazem
 	def lineNumber(self):
 		self.pos += 1
 
-		#Mezery nebo odsazení
+		#Ignoruje mezery nebo odsazení
 		while self.currentChar() in [" ", "\t"]:
 			self.pos += 1
 
+		#Ignoruje prázdný řádek
 		if self.currentChar() == "\n":
 			self.pos -= 1
 			return None
 
+		#Řádek, který nezačíná číslem řádky vypíše chybovou hlášku
 		if not isNum(self.currentChar()):
 			e = Error("Expected line number", None)
 			e.call()
@@ -163,7 +167,7 @@ class Lexer:
 				return Token("OtherKeyword", word)
 			return Token("Identifier", word)
 
-		#Čísla
+		#Čísla - Integer, Float
 		elif isNum(self.currentChar()):
 			number = 0
 			decimal = 0
@@ -193,7 +197,7 @@ class Lexer:
 			e = Error("Unexpected character: \".\"", self.line)
 			e.call()
 
-		#Textové řetězce
+		#Textové řetězce - String
 		elif self.currentChar() == "\"":
 			quote = self.currentChar()
 			openString = True

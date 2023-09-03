@@ -18,9 +18,9 @@ K ovládání textového rozhraní slouží příkazy:
 - CLS - vymaže obsah příkazového řádku
 - NEW - vytvoří nový program
 - DEL _Line number_ - smaže řádek
-- OPEN _Filename_ - otevře soubor s kódem BASIC
+- OPEN _Filename_ - otevře soubor ze složky 'Programy BASIC'
 - SAVE - uloží změny do otevřeného souboru
-- SAVE _Filename_ - uloží zdrojový kód do souboru
+- SAVE _Filename_ - uloží zdrojový kód do souboru ze složky 'Programy BASIC'
 ## Syntaxe jazyka BASIC
 - BASIC není senzitivní na velikost písmen.
 - Není třeba deklarovat proměnné.
@@ -30,6 +30,13 @@ K ovládání textového rozhraní slouží příkazy:
 - Před každým příkazem je nutné napsat číslo řádku, které musí být nezáporné celé číslo.
 - Pokud zvolíte číslo řádku, které již existuje, původní příkaz bude nahrazen novým.
 - Při interpretaci kódu se příkazy provádí v pořadí čísel řádků.
+### Výrazy (Expressions)
+#### Aritmetické operace
+Symboly pro aritmetické operace: sčítání '+', odčítání '-', násobení '*', dělení '/', umocňování '**' a modulo '%'
+#### Relační operace
+Symboly pro relační operace: rovná se '=', nerovná se '<>', větší než '>', menší než '<', větší nebo rovno '>=' a menší nebo rovno '<='
+#### Logické operace
+Klíčová slova pro logické operace: konjunkce 'AND' a disjunkce 'OR'
 ### Příkazy (Statements)
 #### PRINT _Expression_
 Vypíše hodnotu výrazu na konzoli.
@@ -134,14 +141,10 @@ Deklaruje proměnnou jako dynamické pole. Velikost pole se může za běhu prog
 80 LET B[1] = A
 90 PRINT "5 * 3.14 = "; B[1][0] * B[1][1]
 ```
-### Výrazy (Expressions)
-#### Aritmetické operace
-Symboly pro aritmetické operace: sčítání '+', odčítání '-', násobení '*', dělení '/', umocňování '**' a modulo '%'
-#### Relační operace
-Symboly pro relační operace: rovná se '=', nerovná se '<>', větší než '>', menší než '<', větší nebo rovno '>=' a menší nebo rovno '<='
-#### Logické operace
-Klíčová slova pro logické operace: konjunkce 'AND' a disjunkce 'OR'
-### Funkce (Functions)
+### Vestavěné funkce a konstanty (Built-in functions and constants)
+- Konstanty
+    - PI = 3.141592653589793
+    - E = 2.718281828459045
 - Podporované číselné funkce:
     - RAND(X) - vrátí náhodné číslo od 0 do výše hodnoty argumentu
     - ABS(X) - vrátí absolutní hodnotu argumentu

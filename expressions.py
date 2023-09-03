@@ -9,11 +9,12 @@ from evaluator import variables
 import random
 import math
 
+#Výraz, který přistupuje k prvkům pole nebo textového řetězce např.: "String"[0] => "S"
 class BracketToken:
 	def __init__(self, line, token, value):
 		self.line = line
-		self.token = token
-		self.value = value
+		self.token = token #String, Array nebo Identifier
+		self.value = value #Výraz - index
 
 	def log(self):
 		return f"{self.token.log()}[{self.value.log()}]"
@@ -52,7 +53,8 @@ class BracketToken:
 		else:
 			e = Error(f"Array {self.token.value} does not exist", self.line)
 			e.call()
-	
+
+#Výraz obsahující jiný výraz s opačnou hodnotou
 class NegativeExpression:
 	def __init__(self, line, value):
 		self.line = line
@@ -66,7 +68,8 @@ class NegativeExpression:
 			e = Error("String cannot be negative", self.line)
 			e.call()
 		return -self.value.returnValue()
-	
+
+#Zvolání jedné z vestavěných funkcí	
 class FunctionCall:
 	def __init__(self, line, functionName, arguments):
 		self.line = line
@@ -81,6 +84,7 @@ class FunctionCall:
 
 			argument = self.arguments[0].returnValue()
 
+			#Číselné funkce
 			if isinstance(argument, int) or isinstance(argument, float):
 				if self.functionName == "RAND":
 					return random.random() * argument
@@ -124,16 +128,19 @@ class FunctionCall:
 						return math.asin(argument)
 					if self.functionName == "ACOS":
 						return math.acos(argument)
-
+					
+			#Textové funkce
 			if isinstance(argument, str) or isinstance(argument, list):
-				if self.functionName == "LEN":
+				if self.functionName == "LEN": #Funkce se dá použít i pro práci s poli
 					return len(argument)
+				
 				if isinstance(argument, str):
 					if self.functionName == "UPPERCASE":
 						return argument.upper()
 					if self.functionName == "LOWERCASE":
 						return argument.lower()
 
+		#Textové funkce/funkce pro práci s poli
 		if len(self.arguments) == 2:
 			arg0 = self.arguments[0].returnValue()
 			arg1 = self.arguments[1].returnValue()
@@ -160,7 +167,7 @@ class FunctionCall:
 		e = Error(f"Too many and/or wrong types of arguments passed to {self.functionName}", self.line)
 		e.call()
 
-	
+#Binární operace - aritmetické, relační a logické
 class BinaryExpression:
 	def __init__(self, line, left, right, operator):
 		self.line = line
@@ -174,6 +181,7 @@ class BinaryExpression:
 
 		return f"BinaryExpression({lString} {self.operator} {rString})"
 	
+	#Vrátí Integer pokud je value celé číslo (ale uložené v paměti jako Float)
 	def val(self, value):
 		if not isinstance(value, float):
 			if isinstance(value, bool):

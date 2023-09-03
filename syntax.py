@@ -6,7 +6,7 @@
 from error import Error
 from expressions import *
 from statements import *
-from math import pi
+from math import pi, e
 
 class Parser:
 	def __init__(self, lexerDict):
@@ -177,7 +177,8 @@ class Parser:
 			self.endOfLineError(ifStat)
 			return ifStatement(self.lineNumber(), conditions, statements)
 
-	#Parsování výrazů
+	#Parsování výrazů - sestupně podle pořadí operací
+	#Logické OR (disjunkce)
 	def parseOrLogicalExpression(self, parent = None):
 		left = self.parseAndLogicalExpression()
 		while self.currentToken().tokenType == "LogicalOperator" and self.currentToken().value == "OR":
@@ -189,6 +190,7 @@ class Parser:
 			e.call()
 		return left
 	
+	#Logické AND (konjunkce)
 	def parseAndLogicalExpression(self):
 		left = self.parseRelationalExpression()
 		while self.currentToken().tokenType == "LogicalOperator" and self.currentToken().value == "AND":
@@ -197,6 +199,7 @@ class Parser:
 			left = BinaryExpression(self.lineNumber(), left, self.parseRelationalExpression(), operator)
 		return left
 	
+	#Relační = <> < > <= >=
 	def parseRelationalExpression(self):
 		left = self.parseSum()
 		while self.currentToken().tokenType in ["RelationalOperator", "EqualSign"]:
@@ -205,6 +208,7 @@ class Parser:
 			left = BinaryExpression(self.lineNumber(), left, self.parseSum(), operator)
 		return left 
 
+	#Aritmetické + -
 	def parseSum(self):
 		left = self.parseProduct()
 		while self.currentToken().tokenType == "ArithmeticOperator" and self.currentToken().value in ["+", "-"]:
@@ -213,6 +217,7 @@ class Parser:
 			left = BinaryExpression(self.lineNumber(), left, self.parseProduct(), operator)
 		return left 
 
+	#Aritmetické * / %
 	def parseProduct(self):
 		left = self.parsePower()
 		while self.currentToken().tokenType == "ArithmeticOperator" and self.currentToken().value in ["*", "/", "%"]:
@@ -221,6 +226,7 @@ class Parser:
 			left = BinaryExpression(self.lineNumber(), left, self.parsePower(), operator)
 		return left 
 
+	#Aritmetické **
 	def parsePower(self):
 		left = self.parseFactor()
 		while self.currentToken().tokenType == "ArithmeticOperator" and self.currentToken().value == "**":
@@ -229,10 +235,15 @@ class Parser:
 			left = BinaryExpression(self.lineNumber(), left, self.parseFactor(), operator)
 		return left 
 
+	#Operandy, výrazy v závorkách, zvolání funkcí, konstanty (PI, E)
 	def parseFactor(self):
-		if self.currentToken().tokenType == "OtherKeyword" and self.currentToken().value == "PI":
-			self.posY += 1
-			return Token("Float", pi)
+		if self.currentToken().tokenType == "OtherKeyword":
+			if self.currentToken().value == "PI":
+				self.posY += 1
+				return Token("Float", pi)
+			if self.currentToken().value == "E":
+				self.posY += 1
+				return Token("Float", e)
 		
 		if self.currentToken().tokenType == "FunctionName":
 			token = self.currentToken()
@@ -275,9 +286,13 @@ class Parser:
 		if self.currentToken().value == "-":
 			self.posY += 1
 
-			if self.currentToken().tokenType == "OtherKeyword" and self.currentToken().value == "PI":
-				self.posY += 1
-				return NegativeExpression(self.lineNumber(), Token("Float", pi))
+			if self.currentToken().tokenType == "OtherKeyword":
+				if self.currentToken().value == "PI":
+					self.posY += 1
+					return NegativeExpression(self.lineNumber(), Token("Float", pi))
+				if self.currentToken().value == "E":
+					self.posY += 1
+					return NegativeExpression(self.lineNumber(), Token("Float", e))
 			
 			if self.currentToken().tokenType == "FunctionName":
 				token = self.currentToken()

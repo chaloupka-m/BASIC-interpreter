@@ -1,5 +1,5 @@
 #Error
-#Při inicializaci objektu se uchovává chybová zpráva a číslo řádku, na kterém je chyba
+#Spouští se při chybném uživatelském vstupu
 
 import sys
 
@@ -7,11 +7,12 @@ class ErrorException(Exception):
 	pass
 
 class Error:
+	#Při inicializaci objektu se uchovává chybová hláška a číslo řádku, na kterém je chyba
 	def __init__(self, message, line):
 		self.message = message
 		self.line = line
 
-	#Při volání funkce call() se na konzoli objeví chybová hláška a program se ukončí
+	#Vypíše chybovou hlášku a program ukončí
 	def call(self, exit = False):
 		if self.line != None:
 			print(f"Error: {self.message} on line {self.line}")
@@ -19,6 +20,6 @@ class Error:
 			print(f"Error: {self.message}")
 		
 		if exit:
-			sys.exit()
+			sys.exit() #Kompletní ukončení - při spouštění zdrojového kódu ze souboru
 			
-		raise ErrorException()
+		raise ErrorException() #Návrat na textové rozhraní

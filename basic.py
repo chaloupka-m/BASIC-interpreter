@@ -1,3 +1,5 @@
+#Hlavní soubor
+
 import sys
 import os
 from lexer import Lexer
@@ -5,17 +7,20 @@ from syntax import Parser
 from evaluator import Evaluator, number
 from error import Error, ErrorException
 
-commands = ["END", "LIST", "RUN", "CLS", "NEW"]
-argumentCommands = ["DEL", "OPEN"]
+#Příkazy k ovládání textového rozhraní
+commands = ["END", "LIST", "RUN", "CLS", "NEW"] #Bez argumentu
+argumentCommands = ["DEL", "OPEN"] #S argumentem
 
 openedFile = ""
 
+#Seřadí instrukce vzestupně podle čísel řádků
 def sortCode(dict):
 	keys = list(dict)
 	keys.sort()
 	sortedDict = {i: dict[i] for i in keys}
 	return sortedDict
 
+#Uloží zdrojový kód do souboru
 def writeFile(filename, content):
 	global openedFile
 
@@ -30,6 +35,7 @@ def writeFile(filename, content):
 		file.write(text)
 	file.close()
 
+#Načte zdrojový kód ze souboru
 def loadFile(filename, exit = False):
 	global openedFile
 
@@ -56,6 +62,7 @@ def loadFile(filename, exit = False):
 	
 	return sortCode(codeFile)
 
+#Textové rozhraní interpretu - editor
 def editor():
 	global openedFile
 
@@ -147,7 +154,8 @@ def editor():
 				continue
 			else:
 				codeFile[lexer.line] = code
-				
+
+#Provede samotnou interpretaci zdrojového kódu
 def interpret(file):
 	lexerDict = {}
 	for code in file:
@@ -166,7 +174,8 @@ def interpret(file):
 					e = Error("Expected command", lexer.line)
 					e.call()
 				break	
-
+	
+	#Tyto příkazy slouží k otestování funkčnosti lexeru a parseru
 	### print("LEXER:")
 	### for number in lexerDict:
 	### 	print("Line number: ", number)
@@ -192,6 +201,7 @@ if __name__ == "__main__":
 		e = Error("Too many arguments", None)
 		e.call(True)
 
+	#Spustí kód ze souboru
 	if len(sys.argv) == 2:
 		codeFile = loadFile(sys.argv[1], True)
 		try:
@@ -199,5 +209,6 @@ if __name__ == "__main__":
 		except ErrorException:
 			sys.exit()
 
+	#Otevře textové rozhraní - editor
 	elif len(sys.argv) == 1:
 		editor()
