@@ -228,12 +228,14 @@ class Parser:
 
 	#Aritmetické **
 	def parsePower(self):
-		left = self.parseFactor()
+		operands = [self.parseFactor()]
 		while self.currentToken().tokenType == "ArithmeticOperator" and self.currentToken().value == "**":
-			operator = self.currentToken().value
 			self.posY += 1
-			left = BinaryExpression(self.lineNumber(), left, self.parseFactor(), operator)
-		return left 
+			operands.append(self.parseFactor())
+		right = operands[-1]
+		for i in range(len(operands) - 2, -1, -1):
+			right = BinaryExpression(self.lineNumber(), operands[i], right, "**")
+		return right
 
 	#Operandy, výrazy v závorkách, zvolání funkcí, konstanty (PI, E)
 	def parseFactor(self):
