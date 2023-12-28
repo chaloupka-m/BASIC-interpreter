@@ -67,6 +67,9 @@ class NegativeExpression:
 		if isinstance(self.value.returnValue(), str):
 			e = Error("String cannot be negative", self.line)
 			e.call()
+		if isinstance(self.value.returnValue(), list):
+			e = Error("Array connot be negative", self.line)
+			e.call()
 		return -self.value.returnValue()
 
 #Zvolání jedné z vestavěných funkcí	
