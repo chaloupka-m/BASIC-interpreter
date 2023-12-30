@@ -24,7 +24,7 @@ def isNum(num):
 	return num in "0123456789"
 
 #Tokeny jsou výstupem lexikálního analyzátoru
-#Operandy jsou uchovávány i nadále jako instance třídy Token a jsou listy v AST
+#Operandy jsou uchovávány i nadále jako instance třídy Token a jsou listy v derivačním stromu
 class Token:
 	def __init__(self, tokenType, value):
 		self.tokenType = tokenType
