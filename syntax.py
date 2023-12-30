@@ -1,7 +1,7 @@
 #Syntaktický analyzátor (Parser)
-#Seřazené tokeny z lexikálního analyzátoru roztřídí do několika AST (Abstract Syntax Tree) seřazených do pole pomocí algoritmu recursive descent parsing
-#AST uchovává pořadí operací, pole AST uchovává pořadí příkazů
-#Pole AST je předáno sémantickému analyzátoru a samotnému interpretu
+#Seřazené tokeny z lexikálního analyzátoru roztřídí do několika derivačních stromů seřazených do pole pomocí algoritmu recursive descent parsing
+#Derivační strom uchovává pořadí operací, pole derivačních stromů uchovává pořadí příkazů
+#Pole derivačních stromů je předáno sémantickému analyzátoru a samotnému interpretu
 
 from error import Error
 from expressions import *

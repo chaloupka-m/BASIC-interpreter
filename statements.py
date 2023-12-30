@@ -1,5 +1,5 @@
 #Příkazy
-#Instance tříd lonelyStatement, simpleStatement a ifStatement jsou uzly AST nebo jejich kořeny seřazenými do pole AST
+#Instance tříd lonelyStatement, simpleStatement a ifStatement jsou uzly derivačních stromů nebo jejich kořeny seřazenými do pole derivačních stromů
 #Funkce log() vrací textový řetězec s vizuální strukturou uzlu -> určený pro výstup na konzoli při testování
 
 #CLS, END, RETURN, REM

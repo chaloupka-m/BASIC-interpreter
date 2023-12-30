@@ -1,5 +1,5 @@
 #Výrazy
-#Instance tříd BracketToken, NegativeExpression, FunctionCall a BinaryExpression jsou uzly v AST
+#Instance tříd BracketToken, NegativeExpression, FunctionCall a BinaryExpression jsou uzly v derivačním stromu
 #Funkce log() vrací textový řetězec s vizuální strukturou uzlu -> určený pro výstup na konzoli při testování
 #Funkce returnValue() vrací výsledek operace
 
