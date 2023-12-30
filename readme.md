@@ -28,7 +28,7 @@ Ve složce "Programy BASIC" se nachází ukázky kódu, které můžete spustit 
 Binary search je algoritmus pro vyhledávání čísel v seřazeném seznamu. Pro předvedení je seznam ve zdrojovém kódu již definovaný. Po spuštění kódu vás program požádá o uživatelský vstup. Pokud zadáte číslo, které se v seznamu nachází, program vrátí pozici onoho čísla v seznamu. Nutno dodat, že indexy prvků v seznamu se číslují od nuly. Pokud zadáte číslo, které v seznamu není program vás o tom informuje, podobně jako při zadání neplatného vstupu.
 ### Výpočet faktoriálu
 Tento program vrátí faktoriál zadaného čísla neboli součin těch přirozených čísel, která jsou menší nebo rovna zadanému číslu.
-### Fibonacchiho posloupnost
-Program vypíše prvních 50 Fibonacchiho čísel. Posloupnost začíná čísly 0 a 1, hodnoty dalších členů jsou vždy rovny součtu dvou předchozích.
+### Fibonacciho posloupnost
+Program vypíše prvních 50 Fibonacciho čísel. Posloupnost začíná čísly 0 a 1, hodnoty dalších členů jsou vždy rovny součtu dvou předchozích.
 ### Prvočísla
 Tento program vypíše prvních 10000 prvočísel, tedy přirozených čísel, která jsou beze zbytku dělitelná číslem 1 a sebou samými (kromě samotnho čísla 1). Algoritmus funguje na principu Eratosthenova síta.
