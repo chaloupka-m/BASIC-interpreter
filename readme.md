@@ -23,7 +23,7 @@ K ovládání textového rozhraní slouží příkazy:
 - SAVE – uloží změny do otevřeného souboru
 - SAVE _název souboru_ – uloží zdrojový kód do konkrétního souboru ze složky "Programy BASIC"
 ## Ukázky programů v jazyce BASIC
-Ve složce "Programy BASIC" se nachází ukázky kódu, které můžete spustit pomocí tohoto interpretu. Slouží k demonstraci škály využití mého interpretu. Zároveň je můžete využít pro inspiraci k vlastním projektům. Předtím bych však doporučil si důkladněji nastudovat syntaxi této verze jazyka BASIC, kterou jsem podrobně popsal ve své seminární práci.
+Ve složce "Programy BASIC" se nachází ukázky kódu, které můžete spustit pomocí tohoto interpretu. Slouží k demonstraci škály využití mého interpretu. Zároveň je můžete využít pro inspiraci k vlastním projektům. Předtím bych však doporučil si důkladněji nastudovat syntaxi této verze jazyka BASIC, kterou jsem podrobně popsal ve své [seminární práci](https://gymnasiumkladno-my.sharepoint.com/:w:/g/personal/o17cham_gymnasiumkladno_cz/EYVxP4Xq6XdBiuLxrCUcoYMBI2qg4XUaQWfFmDAEqAYrnQ?e=hT9wT5).
 ### Binary search
 Binary search je algoritmus pro vyhledávání čísel v seřazeném seznamu. Pro předvedení je seznam ve zdrojovém kódu již definovaný. Po spuštění kódu vás program požádá o uživatelský vstup. Pokud zadáte číslo, které se v seznamu nachází, program vrátí pozici onoho čísla v seznamu. Nutno dodat, že indexy prvků v seznamu se číslují od nuly. Pokud zadáte číslo, které v seznamu není program vás o tom informuje, podobně jako při zadání neplatného vstupu.
 ### Výpočet faktoriálu
