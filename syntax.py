@@ -85,6 +85,25 @@ class Parser:
 					break
 			self.endOfLineError(ifStat)
 			return simpleStatement(command.value, self.lineNumber(), arguments)
+		
+		if command.value == "PLOT":
+			self.posY += 1
+			arguments = [self.currentToken()]
+			if arguments[0].tokenType != "Identifier":
+				e = Error("Expected identifier", self.lineNumber())
+				e.call()
+			self.posY += 1
+			if self.currentToken().tokenType != "Semicolon":
+				e = Error("Expected semicolon", self.lineNumber())
+				e.call()
+			self.posY += 1
+			arguments.append(self.currentToken())
+			if arguments[1].tokenType != "Identifier":
+				e = Error("Expected identifier", self.lineNumber())
+				e.call()
+			self.posY += 1
+			self.endOfLineError(ifStat)
+			return simpleStatement(command.value, self.lineNumber(), arguments)
 
 		if command.value == "INPUT":
 			self.posY += 1

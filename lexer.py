@@ -6,7 +6,7 @@ from error import Error
 from evaluator import variables
 
 #Příkazy
-commands = ["PRINT", "INPUT", "CLS", "IF", "END", "LET", "GOTO", "FOR", "NEXT", "PAUSE", "GOSUB", "REM", "RETURN", "ARRAY"]
+commands = ["PRINT", "INPUT", "CLS", "IF", "END", "LET", "GOTO", "FOR", "NEXT", "PAUSE", "GOSUB", "REM", "RETURN", "ARRAY", "PLOT"]
 
 #Logické operátory
 logicalOperators = ["AND", "OR"]

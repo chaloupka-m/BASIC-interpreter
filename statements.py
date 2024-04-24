@@ -11,7 +11,7 @@ class lonelyStatement:
     def log(self):
         return f"Statement({self.command})"
 
-#GOTO, PAUSE, GOSUB, ARRAY, NEXT, PRINT, INPUT, LET, FOR
+#GOTO, PAUSE, GOSUB, ARRAY, NEXT, PRINT, INPUT, LET, FOR, PLOT
 class simpleStatement:
     def __init__(self, command, line, arguments):
         self.command = command

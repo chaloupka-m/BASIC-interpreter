@@ -6,6 +6,7 @@ import os
 from time import sleep
 import math
 from error import Error
+import matplotlib.pyplot as plt
 
 variables = {} #Ukládání proměnných
 forLoops = {} #Informace o proměnných použitých pro cyklus FOR
@@ -36,8 +37,12 @@ class Evaluator:
 	def run(self):
 		while self.pos < len(self.statements):
 			if not self.evaluate(self.currentStatement()):
-				return
+				break
 			self.pos += 1
+		
+		variables.clear()
+		forLoops.clear()
+		subroutines.clear()
 	
 	def evaluate(self, stat):
 		if stat.__class__.__name__ == "lonelyStatement":
@@ -60,6 +65,24 @@ class Evaluator:
 				for a in stat.arguments:
 					logs += str(a.returnValue())
 				print(logs)
+
+			elif stat.command == "PLOT":
+				if stat.arguments[0].value not in variables.keys() or not isinstance(variables[stat.arguments[0].value], list):
+					e = Error(f"Array {stat.arguments[0].value} does not exist", self.lineNumber())
+					e.call()
+				if stat.arguments[1].value not in variables.keys() or not isinstance(variables[stat.arguments[1].value], list):
+					e = Error(f"Array {stat.arguments[1].value} does not exist", self.lineNumber())
+					e.call()
+
+				xpoints = variables[stat.arguments[0].value]
+				ypoints = variables[stat.arguments[1].value]
+
+				if len(xpoints) != len(ypoints):
+					e = Error(f"Arrays must be all same length", self.lineNumber())
+					e.call()
+
+				plt.plot(xpoints, ypoints)
+				plt.show()
 
 			elif stat.command == "LET":
 				node = stat.arguments[0]
