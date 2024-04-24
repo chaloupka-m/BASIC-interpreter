@@ -1,0 +1,8 @@
+10 ARRAY X
+20 ARRAY Y
+30 FOR I = 0 TO 20 * PI
+40 LET T = I / 10
+50 LET X[I] = 16 * SIN(T) ** 3
+60 LET Y[I] = 13 * COS(T) - 5 * COS(T * 2) - 2 * COS(T * 3) - COS(4 * T)
+70 NEXT I
+80 PLOT X; Y
